@@ -1,31 +1,37 @@
 .input {
-  $block: &;
-
   position: relative;
+
   height: 48px;
+
+  $block: &;
 
   &:before {
     content: "";
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background-size: 100% 100%;
+
     background-repeat: no-repeat;
-    transition: opacity 0.3s ease;
+    background-size: 100% 100%;
+    transform: translateY(-50%);
     opacity: 0;
+
+    transition: opacity 0.3s ease;
   }
 
   &--correct {
     #{$block}__field {
       color: white;
-      border-color: rgba(white, 0.2);
+
       background-color: transparent;
+      border-color: rgba(white, 0.2);
     }
 
     &:before {
       right: 23px;
+
       width: 18px;
       height: 17px;
+
       background-image: url(/images/correct.svg);
       opacity: 1;
     }
@@ -38,8 +44,10 @@
 
     &:before {
       right: 10px;
+
       width: 32px;
       height: 32px;
+
       background-image: url(/images/error.svg);
       opacity: 1;
     }
@@ -62,22 +70,25 @@
   }
 
   &__field {
-    padding-left: 50px;
+    width: 100%;
+    height: 100%;
     padding-right: 50px;
+    padding-left: 50px;
+
+    font-weight: normal;
     font-size: 18px;
     line-height: 48px;
     font-family: $helvetica-neue;
-    font-weight: normal;
     text-align: center;
+    letter-spacing: 0.1em;
+
     background-color: white;
     border: 1px solid white;
     border-radius: 25px;
-    width: 100%;
-    height: 100%;
     outline: none;
-    letter-spacing: 0.1em;
+
     transition: color 0.3s ease, border-color 0.3s ease,
-      background-color 0.3s ease;
+    background-color 0.3s ease;
 
     &::placeholder {
       color: rgba(black, 0.4);
