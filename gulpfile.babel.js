@@ -14,6 +14,7 @@ import del from "del";
 import connect from "gulp-connect";
 import filterSize from "gulp-filter-size";
 import cssUrlAdjuster from "gulp-css-url-adjuster";
+import autoprefixer from "gulp-autoprefixer";
 
 const SRC_FOLDER_NAME = "src";
 const DIST_FOLDER_NAME = "dist";
@@ -37,7 +38,7 @@ const paths = {
     watch: SRC_FOLDER_NAME + "/scripts/**/*.js"
   },
   fonts: {
-    src: SRC_FOLDER_NAME + "/fonts/**/*.woff",
+    src: SRC_FOLDER_NAME + "/fonts/**/*.*",
     dest: DIST_FOLDER_NAME + "/fonts/"
   },
   images: {
@@ -56,7 +57,7 @@ export function views() {
     .pipe(
       inject(
         gulp.src([paths.views.styles, paths.views.scripts], { read: false }),
-        { ignorePath: DIST_FOLDER_NAME, addRootSlash : false }
+        { ignorePath: DIST_FOLDER_NAME, addRootSlash: false }
       )
     )
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
@@ -79,9 +80,17 @@ export function styles() {
         maxWeightResource: BASE64_MAX_SIZE
       })
     )
-    .pipe(cssUrlAdjuster({
-      prepend: '..'
-    }))
+    .pipe(
+      cssUrlAdjuster({
+        prepend: ".."
+      })
+    )
+    .pipe(
+      autoprefixer({
+        browsers: ["last 2 versions"],
+        cascade: false
+      })
+    )
     .pipe(cssmin({ keepSpecialComments: 0 }))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(connect.reload());
@@ -125,16 +134,20 @@ export function reload() {
 export function images() {
   return gulp
     .src(paths.images.src)
-    .pipe(filterSize({min: BASE64_MAX_SIZE}))
-    .pipe(gulp.dest(paths.images.dest))
+    .pipe(filterSize({ min: BASE64_MAX_SIZE }))
+    .pipe(gulp.dest(paths.images.dest));
 }
 
 export function fonts() {
   return gulp
     .src(paths.fonts.src)
-    .pipe(filterSize({min: BASE64_MAX_SIZE}))
-    .pipe(gulp.dest(paths.fonts.dest))
+    .pipe(filterSize({ min: BASE64_MAX_SIZE }))
+    .pipe(gulp.dest(paths.fonts.dest));
 }
 
-export const build = gulp.series(clean, gulp.parallel(styles, scripts, fonts, images), views);
+export const build = gulp.series(
+  clean,
+  gulp.parallel(styles, scripts, fonts, images),
+  views
+);
 export const dev = gulp.series(build, gulp.parallel(server, reload));
