@@ -1,0 +1,35 @@
+.button {
+  display: block;
+  padding: 0;
+  height: 48px;
+  line-height: 48px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: $helvetica-neue;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.253em;
+  outline: none;
+
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 25px;
+  cursor: pointer;
+
+  transition: color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    color: black;
+
+    background-color: white;
+  }
+
+  &--disabled {
+    opacity: 0.3;
+
+    pointer-events: none;
+  }
+}

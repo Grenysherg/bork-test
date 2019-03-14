@@ -1,0 +1,22 @@
+$min-desktop: 353px;
+
+@mixin respond-to($media) {
+  @if $media == desktop {
+    @media only screen and (min-width: $min-desktop) {
+      @content;
+    }
+  }
+}
+
+@mixin hidden() {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
