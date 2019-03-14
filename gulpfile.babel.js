@@ -56,7 +56,7 @@ export function views() {
     .pipe(
       inject(
         gulp.src([paths.views.styles, paths.views.scripts], { read: false }),
-        { ignorePath: DIST_FOLDER_NAME + '/' }
+        { ignorePath: DIST_FOLDER_NAME, addRootSlash : false }
       )
     )
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
