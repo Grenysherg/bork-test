@@ -7,8 +7,7 @@ $helvetica-neue: "HelveticaNeue";
   font-weight: 300;
   font-family: $helvetica-neue;
 
-  src: url(/fonts/helvetica-neue/helvetica-neue-light.woff2) format("woff2")
-    url(/fonts/helvetica-neue/helvetica-neue-light.woff) format("woff");
+  src: url(/fonts/helvetica-neue/helvetica-neue-light.woff) format("woff");
 }
 
 @font-face {
@@ -16,8 +15,7 @@ $helvetica-neue: "HelveticaNeue";
   font-weight: normal;
   font-family: $helvetica-neue;
 
-  src: url(/fonts/helvetica-neue/helvetica-neue-regular.woff2) format("woff2")
-    url(/fonts/helvetica-neue/helvetica-neue-regular.woff) format("woff");
+  src: url(/fonts/helvetica-neue/helvetica-neue-regular.woff) format("woff");
 }
 
 @font-face {
@@ -25,6 +23,5 @@ $helvetica-neue: "HelveticaNeue";
   font-weight: 500;
   font-family: $helvetica-neue;
 
-  src: url(/fonts/helvetica-neue/helvetica-neue-medium.woff2) format("woff2")
-    url(/fonts/helvetica-neue/helvetica-neue-medium.woff) format("woff");
+  src: url(/fonts/helvetica-neue/helvetica-neue-medium.woff) format("woff");
 }
